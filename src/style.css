@@ -45,7 +45,7 @@ li{
 }
 
 .weather-temperature img {
-    margin-right: 8px;
+    margin-right: 2px;
     height: 64px;
     width: 64px;
 }
@@ -60,6 +60,5 @@ li{
 .weather-temperature .units {
     position: relative;
     top: -34px;
-    left:-12px;
     font-size: 14px;
 }
