@@ -11,10 +11,10 @@ body {
 .title {
     text-align: center;
 }
-
 .sky {
     font-size: 20px;
-    color: beige;
+    font-weight: bolder;
+    color: blueviolet;
     position: relative;
     left: 550px;
     bottom: 10px;
@@ -39,8 +39,7 @@ strong {
     font-weight: bolder;
 }
 
-.link,
-strong {
+.link,strong {
     position: relative;
     left: 430px;
     bottom: 30px;
