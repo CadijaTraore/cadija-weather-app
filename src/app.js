@@ -16,7 +16,7 @@ function formatDate(timestamp) {
 }
 
 function displayTemperature(response){
-console.log(response.data);
+
 let temperatureElement = document.querySelector("#temperature");
 temperatureElement.innerHTML = Math.round(response.data.main.temp);
 
@@ -44,9 +44,22 @@ iconElement.setAttribute("src",`https://openweathermap.org/img/wn/${response.dat
  iconElement.setAttribute("alt", response.data.weather[0].description); // this allows the alternative text image src to change according to the city name when inspectig the element section (not the console)
 }
 
+function search(city) {
 let apiKey = "11fcbbbce878c670c51e166618d82bd1";
-let city = "Moscow";
 let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
-
 axios.get(apiUrl).then(displayTemperature); 
+}
+
+function handleSubmit(event) {
+    event.preventDefault(); // to prevent the page from reloading
+    let cityInputElement = document.querySelector("#city-input");
+    search(cityInputElement.value);
+    // to sent an API call to fetch the data 
+}
+
+search("Lisbon");
+
+
+let form = document.querySelector("#search-form") // to be able to search a city and get real-time results
+form.addEventListener("submit", handleSubmit);
