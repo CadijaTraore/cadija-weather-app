@@ -28,7 +28,7 @@ li{
     line-height: 19px;
 }
 
-li :first-letter { /*to capitalise only the 1st letter */
+ul :first-letter { /*to capitalise only the 1st letter */
 text-transform: capitalize;
 }
 .weatherAppWrapper{
