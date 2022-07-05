@@ -41,7 +41,9 @@ let iconElement = document.querySelector("#icon");
 iconElement.setAttribute("src",`https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
  // changing the city name accompanied by the right weather icon, we replace the id 02d to the object location//
 
- iconElement.setAttribute("alt", response.data.weather[0].description); // this allows the alternative text image src to change according to the city name when inspectig the element section (not the console)
+iconElement.setAttribute("alt", response.data.weather[0].description); // this allows the alternative text image src to change according to the city name when inspectig the element section (not the console)
+
+celsiusTemperature = response.data.main.temp; 
 }
 
 function search(city) {
@@ -54,12 +56,37 @@ axios.get(apiUrl).then(displayTemperature);
 function handleSubmit(event) {
     event.preventDefault(); // to prevent the page from reloading
     let cityInputElement = document.querySelector("#city-input");
-    search(cityInputElement.value);
-    // to sent an API call to fetch the data 
+    search(cityInputElement.value);  // to sent an API call to fetch the data 
 }
 
-search("Lisbon");
+function displayFahrenheitTemperature(event) {
+    event.preventDefault();
+    let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
+    // removing the celsius class and add it to the Fahrenheit sign 
+    celsiusLink.classList.remove("active");
+    fahrenheitlink.classList.add("active");
+    let temperatureElement = document.querySelector("#temperature");
+    temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
+}
 
+function displayCelsiusTemperature(event) {
+    event.preventDefault();
+    celsiusLink.classList.add("active");
+    fahrenheitlink.classList.remove("active");
+    let temperatureElement = document.querySelector("#temperature");
+    temperatureElement.innerHTML = Math.round(celsiusTemperature);
+}
+
+let celsiusTemperature = null;
 
 let form = document.querySelector("#search-form") // to be able to search a city and get real-time results
 form.addEventListener("submit", handleSubmit);
+
+let fahrenheitlink = document.querySelector("#fahrenheit-link");
+fahrenheitlink.addEventListener("click", displayFahrenheitTemperature);
+
+
+let celsiusLink = document.querySelector("#celsius-link");
+celsiusLink.addEventListener("click", displayCelsiusTemperature);
+
+search("Lisbon");
