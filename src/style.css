@@ -32,7 +32,7 @@ ul :first-letter { /*to capitalise only the 1st letter */
 text-transform: capitalize;
 }
 .weatherAppWrapper{
-    max-width: 700px;
+    max-width: 600px;
     margin: 30px auto;
 }
 
@@ -102,10 +102,4 @@ font-size:  13px;
     right: 10px;
 }
 
-.button {
-border-radius: 30px;
-background-color: blue;
-color: antiquewhite;
-padding: 15px;
-}
 

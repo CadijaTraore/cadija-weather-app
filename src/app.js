@@ -33,7 +33,7 @@ function displayForecast(response) {
    //previously creating a loop for the forecast    let days = ["Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]; which we don't want to loop anymore, but rather we want to use the real info from the API
   
     forecast.forEach(function (forecastDay, index) { 
-        if (index  < 5 ) { 
+        if (index  < 6 ) { 
      // below we're concatinating the string to create a forecast for multiple days
 
    forecastHTML = 
