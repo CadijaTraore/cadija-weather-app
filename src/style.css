@@ -96,3 +96,7 @@ left: 18px;
 .weather-forecast-temperatures {
 font-size:  13px;
 }
+
+.col-2 {
+max-width: 2000px;
+}
