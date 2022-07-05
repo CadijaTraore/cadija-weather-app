@@ -15,7 +15,8 @@ function formatDate(timestamp) {
     return `${day} at ${hours}:${minutes}`;
 }
 
-function displayForecast() {
+function displayForecast(response) {
+    console.log(response.data.daily);
     let forecastElement = document.querySelector("#forecast");
     //repeating the forecast without using multiple blocks of heavy code 
   
@@ -33,7 +34,8 @@ function displayForecast() {
                 ${day} 
                 <img src="https://openweathermap.org/img/wn/01d@2x.png" 
                 alt="" 
-                width="42">
+                width="42"
+                class = "sun">
             </br>
             <div class="weather-forecast-temperatures"> 
                 <span class="weather-forecast-temperature-max"> 
@@ -47,6 +49,12 @@ function displayForecast() {
      })    
     forecastElement.innerHTML = forecastHTML + `</div>`;
     forecastElement.innerHTML = forecastHTML;
+}
+function getForecast(coordinates) {
+    console.log(coordinates);
+    let apiKey = "11fcbbbce878c670c51e166618d82bd1"
+    let apiURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+    axios.get(apiURL).then(displayForecast);
 }
 
 function displayTemperature(response){
@@ -77,7 +85,10 @@ iconElement.setAttribute("src",`https://openweathermap.org/img/wn/${response.dat
 
 iconElement.setAttribute("alt", response.data.weather[0].description); // this allows the alternative text image src to change according to the city name when inspectig the element section (not the console)
 
-celsiusTemperature = response.data.main.temp; 
+celsiusTemperature = response.data.main.temp;
+
+getForecast(response.data.coord);
+
 }
 
 function search(city) {
@@ -124,4 +135,3 @@ let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", displayCelsiusTemperature);
 
 search("Lisbon");
-displayForecast();
