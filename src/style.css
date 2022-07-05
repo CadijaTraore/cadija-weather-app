@@ -32,15 +32,14 @@ ul :first-letter { /*to capitalise only the 1st letter */
 text-transform: capitalize;
 }
 .weatherAppWrapper{
-    max-width: 600px;
+    max-width: 700px;
     margin: 30px auto;
 }
 
 .weatherApp {
-   
     padding: 20px;
     border: 1px solid #dadde1;
-    border-radius: 5px;
+    border-radius: 60px;
 }
 
 .overview {
@@ -74,36 +73,39 @@ text-transform: capitalize;
 .weather-temperature .active:hover {
     text-decoration: none;
 }
+
+.weather-forecast{
+    margin-top: 20px;
+    text-align: center;
+    color: #000;
+}
+
 .weather-forecast-date {
     font-size: 16px;
     opacity: 0.5;
-    text-align: center;
-}
-
-.weather-forecast{
-    margin-top: 30px;
-    margin-left: 60px;
-    color: #000;
 }
 
 .weather-forecast-temperature-min {
 opacity: 0.5;
-position: relative;
-bottom: 20px;
-left: 18px;
 }
 
 .weather-forecast-temperatures {
 font-size:  13px;
-position: relative;
-right: 4px;
 }
 
 .col-2 {
-padding-left: 25px;
+    padding-left: 65px;
 }
 
 .sun {
     position: relative;
     right: 10px;
 }
+
+.button {
+border-radius: 30px;
+background-color: blue;
+color: antiquewhite;
+padding: 15px;
+}
+

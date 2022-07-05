@@ -15,39 +15,48 @@ function formatDate(timestamp) {
     return `${day} at ${hours}:${minutes}`;
 }
 
+function formatDay(timestamp){
+let date = new Date(timestamp * 1000);
+let day = date.getDay();
+let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+return days[day];
+}
+
 function displayForecast(response) {
-    console.log(response.data.daily);
+    let forecast = response.data.daily;
+
     let forecastElement = document.querySelector("#forecast");
     //repeating the forecast without using multiple blocks of heavy code 
   
     let forecastHTML = `<div class="row">`;
-   //creating a loop for the forecast
-    let days = ["Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-    days.forEach(function (day) { 
+   //previously creating a loop for the forecast    let days = ["Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]; which we don't want to loop anymore, but rather we want to use the real info from the API
+  
+    forecast.forEach(function (forecastDay, index) { 
+        if (index  < 5 ) { 
+     // below we're concatinating the string to create a forecast for multiple days
 
-   // concatenating the strings
-   forecastHTML = forecastHTML +  
+   forecastHTML = 
+    forecastHTML +  
    `
-     <div class="row">
             <div class="col-2"> 
-                <div class="weather-forecast-date"> 
-                ${day} 
-                <img src="https://openweathermap.org/img/wn/01d@2x.png" 
+                <div class="weather-forecast-date">${formatDay(forecastDay.dt)} </div>
+                
+                <img src="https://openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png" 
                 alt="" 
                 width="42"
-                class = "sun">
-            </br>
+                class = "sun"
+                />
             <div class="weather-forecast-temperatures"> 
                 <span class="weather-forecast-temperature-max"> 
-                    18° </span>
-                <span class="weather-forecast-temperature-min"> 12° </span>
+                    ${Math.round(forecastDay.temp.max)}° </span>
+                <span class="weather-forecast-temperature-min"> ${Math.round(forecastDay.temp.min)}° </span>
             </div>
-            </div> 
-        </div>
         </div>
         `;
+        }
      })    
-    forecastElement.innerHTML = forecastHTML + `</div>`;
+    forecastHTML = forecastHTML + `</div>`;
     forecastElement.innerHTML = forecastHTML;
 }
 function getForecast(coordinates) {
